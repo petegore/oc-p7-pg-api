@@ -1,8 +1,8 @@
 import pandas as pd
 import pickle
 
-TEST_SET_PATH = '../../dashboard/data/test_set.csv'
-MODEL_PATH = '../model/lgbm.pkl'
+TEST_SET_PATH = './data/test_set.csv'
+MODEL_PATH = './model/lgbm.pkl'
 PREDICTION_THRESHOLD = 0.05
 
 def get_model():

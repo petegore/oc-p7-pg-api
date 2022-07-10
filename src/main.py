@@ -1,22 +1,13 @@
 from flask import Flask
 
-from model import *
+from .model import *
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     return "No client ID found to make a prediction"
 
-@app.route('/<client_id>')
-def predict(client_id):
-    client_df = get_client_row(client_id)
-    prediction, probability = predict_client(client_id, client_df)
-
-    return {
-        'client': client_df.iloc[0].to_dict(),
-        'prediction': prediction,
-        'probability': probability
-    }
 
 @app.route('/features')
 def feature_importances():
@@ -27,3 +18,16 @@ def feature_importances():
     })
 
     return dict(zip(features.name, features.importance))
+
+
+@app.route('/<int:client_id>')
+def predict(client_id):
+    client_df = get_client_row(client_id)
+    prediction, probability = predict_client(client_id, client_df)
+
+    return {
+        'client': client_df.iloc[0].to_dict(),
+        'prediction': prediction,
+        'probability': probability
+    }
+
