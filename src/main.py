@@ -1,15 +1,14 @@
 from flask import Flask
-from model import *
 
+from model import *
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return os.getcwd()
+    return "No client ID found to make a prediction"
 
 @app.route('/<client_id>')
 def predict(client_id):
-
     client_df = get_client_row(client_id)
     prediction, probability = predict_client(client_id, client_df)
 
