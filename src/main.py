@@ -20,7 +20,7 @@ def feature_importances():
     return dict(zip(features.name, features.importance))
 
 
-@app.route('/<int:client_id>')
+@app.route('/<client_id>')
 def predict(client_id):
     client_df = get_client_row(client_id)
     prediction, probability = predict_client(client_id, client_df)
