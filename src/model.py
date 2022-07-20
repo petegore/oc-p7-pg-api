@@ -27,9 +27,9 @@ def predict_client(client_id, client_df=None):
         model = get_model()
         predictions = model.predict_proba(client_df.drop(columns=['SK_ID_CURR']))
 
-        if predictions[0][0] > PREDICTION_THRESHOLD:
-            return 0, predictions[0][0]
-        else:
+        if predictions[0][1] > PREDICTION_THRESHOLD:
             return 1, predictions[0][1]
+        else:
+            return 0, predictions[0][0]
 
     return None, None
